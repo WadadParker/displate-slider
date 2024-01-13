@@ -45,16 +45,7 @@ const poster = {
 function App() {
   const [currBackground, setCurrBackground] = useState(0);
   const [type, setType] = useState<"matt" | "gloss">("matt");
-  const [frame, setFrame] = useState<
-    "none" | "natural" | "graphite" | "white" | "black"
-  >("none");
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
-
-  const isFrameNone = frame === "none";
-  const isFrameNatural = frame === "natural";
-  const isFrameGraphite = frame === "graphite";
-  const isFrameWhite = frame === "white";
-  const isFrameBlack = frame === "black";
 
   const onNext = () => {
     if (currBackground === backgrounds.length - 1) {
