@@ -2,9 +2,27 @@ import { useState } from "react";
 import "./App.css";
 
 const backgrounds = [
-  "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/wall/decor/1280x800@2x.avif?v=MTkuMTIuMjAyMw==",
-  "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/dining/decor/1280x800@2x.avif?v=MTkuMTIuMjAyMw==",
-  "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/living/decor/1280x800@2x.avif?v=MTkuMTIuMjAyMw==",
+  {
+    id: "1",
+    large:
+      "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/wall/decor/1280x800@2x.avif?v=MTkuMTIuMjAyMw==",
+    small:
+      "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/wall/thumbs/thumbnail@2x.avif?v=MjguMTEuMjAyMw==",
+  },
+  {
+    id: "1",
+    large:
+      "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/dining/decor/1280x800@2x.avif?v=MTkuMTIuMjAyMw==",
+    small:
+      "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/dining/thumbs/thumbnail@2x.avif?v=MjguMTEuMjAyMw==",
+  },
+  {
+    id: "1",
+    large:
+      "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/living/decor/1280x800@2x.avif?v=MTkuMTIuMjAyMw==",
+    small:
+      "https://assets-static-prod.displate.com/next-assets/public/images/pdp/HeroSlider/living/thumbs/thumbnail@2x.avif?v=MjguMTEuMjAyMw==",
+  },
 ];
 
 const poster = {
@@ -31,27 +49,41 @@ function App() {
   return (
     <div className="relative">
       <h1 className="text-3xl font-bold underline">
-        <img src={backgrounds[currBackground]} alt="Background Image" />
+        <img src={backgrounds[currBackground].large} alt="Background Image" />
         <img
           className="absolute top-[10%] max-w-[20%] left-[50%] transform translate-x-[-50%]"
           src={poster.image}
           alt="Background Image"
         />
-
-        <button
-          onClick={onNext}
-          className="absolute left-3 bg-white p-3 rounded-full top-[50%] transform translate-y-[-50%]"
-          type="button"
-        >
-          <LeftIcon />
-        </button>
-        <button
-          onClick={onPrev}
-          className="absolute right-3 bg-white p-3 rounded-full top-[50%] translate-y-[-50%]"
-          type="button"
-        >
-          <RightIcon />
-        </button>
+        <div className="top-10 left-10 absolute flex gap-4 flex-col">
+          {backgrounds.map((background, index) => (
+            <button
+              className="relative border-2 border-white shadow-xl cursor-pointer"
+              key={index}
+              type="button"
+              onClick={() => {
+                setCurrBackground(index);
+              }}
+            >
+              <img
+                src={poster.image}
+                className="w-[30px] h-[41px] absolute top-[7px] transform translate-x-[-50%] left-[50%]"
+              />
+              <img
+                src={background.small}
+                className="w-[62px] h-[62px] shadow-xl"
+              />
+            </button>
+          ))}
+        </div>
+        <div className="absolute bottom-[7%] left-[50%] transform translate-x-[-50%] bg-white rounded-full">
+          <button onClick={onNext} className="p-3 rounded-full" type="button">
+            <LeftIcon />
+          </button>
+          <button onClick={onPrev} className="p-3 rounded-full" type="button">
+            <RightIcon />
+          </button>
+        </div>
       </h1>
     </div>
   );
@@ -63,8 +95,8 @@ export const LeftIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
+      width="18"
+      height="18"
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
@@ -81,8 +113,8 @@ export const LeftIcon = () => {
 export const RightIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="18"
+    height="18"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
