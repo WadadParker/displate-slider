@@ -67,15 +67,15 @@ function App() {
   return (
     <>
       <div
-        className="relative w-full h-screen overflow-hidden bg-blue-200"
+        className="relative w-full h-screen overflow-hidden bg-blue-200 max-sm:h-[70vh]"
       >
         {/* Background Image */}
-        <img className="absolute w-full h-full object-cover -left-28 " src={backgrounds[currBackground].large} alt="background image" 
+        <img className="absolute w-full h-full object-cover -left-28 max-sm:left-0 " src={backgrounds[currBackground].large} alt="background image" 
         style={{transform: size?" scale(1)":" scale(1.21)",
         transition: "transform 0.3s ease-in-out 0s"}}
         />
         <img
-          className="absolute top-[10%] w-[284px] h-[394px] left-[60%] md:left-[50%]  will-change-transform"
+          className="absolute top-[10%] w-[284px] h-[394px] left-[60%] md:left-[50%]  will-change-transform max-sm:left-[50%] max-sm:top-0"
           src={poster.image}
           alt="Background Image"
           style={{          transform: size?"translate(-50%, 0%) scale(0.91)":"translate(-50%, 0%) scale(0.79)",
@@ -84,13 +84,13 @@ function App() {
         {isGloss && (
           <img
             src={GLOSS_MASK}
-            className="absolute top-[10%] max-w-[15%] left-[50%] transform translate-x-[-50%]"
+            className="absolute top-[10%] w-[284px] h-[394px] left-[60%] md:left-[50%]  will-change-transform max-sm:left-[50%] max-sm:top-0"
             style={{          transform: size?"translate(-50%, 0%) scale(0.91)":"translate(-50%, 0%) scale(0.79)",
           transition: "transform 0.3s ease-in-out 0s"}}
           />
         )}
         {/* Carousel Thumbnails */}
-        <div className="md:top-10 bottom-10 left-10 absolute flex gap-4 flex-row md:flex-col">
+        <div className="md:top-10 bottom-10 left-10 absolute flex gap-4 flex-row md:flex-col max-sm:bottom-5">
           {backgrounds.map((background, index) => (
             <button
               className="relative border-2 border-white shadow-xl cursor-pointer"
@@ -112,7 +112,7 @@ function App() {
           ))}
         </div>
         {/* Carousel Buttons */}
-        <div className="absolute bottom-[15%] md:bottom-[5%] left-[50%] transform translate-x-[-50%] bg-white rounded-full">
+        <div className="absolute bottom-[15%] md:bottom-[5%] left-[50%] transform translate-x-[-50%] bg-white rounded-full max-sm:hidden">
           <button onClick={onNext} className="p-3 rounded-full" type="button">
             <LeftIcon />
           </button>
@@ -216,6 +216,15 @@ function App() {
             Read {isDescriptionExpanded ? "less" : "more"}
           </button>
         </div>
+        {/* Select size */}
+        <section className="space-y-2">
+            <b>Pick a size</b>
+            <aside className="h-fit w-fit rounded-full bg-gray-200 flex items-center">
+              <button className={`px-2.5 py-1 border ${size?"bg-transparent  border-transparent":"bg-white "}  rounded-full text-gray-600 hover:text-blue-400`} onClick={()=>setSize(false)}>45 x 32cm</button>
+              <button className={`px-2.5 py-1 border ${size?"bg-white ":"bg-transparent  border-transparent"}  rounded-full text-gray-600 hover:text-blue-400`} onClick={()=>setSize(true)}>67.5 x 48cm</button>
+            </aside>
+
+          </section>
             {/* Matte or gloss option */}
         <div className="mt-4 font-semibold">
           <p className="text-[16px]">Go matte or gloss</p>
