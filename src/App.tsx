@@ -45,7 +45,7 @@ const poster = {
 function App() {
   const [currBackground, setCurrBackground] = useState(0);
   const [size,setSize] = useState<boolean>(false);
-  const [type, setType] = useState<"matt" | "gloss">("matt");
+  const [type, setType] = useState<"matt" | "gloss">("gloss");
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
   const onNext = () => {
@@ -67,23 +67,26 @@ function App() {
   return (
     <>
       <div
-        className="relative w-full h-screen"
-        style={{
-          backgroundImage: `url(${backgrounds[currBackground].large})`,
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "40% center",
-          backgroundSize: "cover",
-        }}
+        className="relative w-full h-screen overflow-hidden bg-blue-200"
       >
+        {/* Background Image */}
+        <img className="absolute w-full h-full object-cover -left-28 " src={backgrounds[currBackground].large} alt="background image" 
+        style={{transform: size?" scale(1)":" scale(1.21)",
+        transition: "transform 0.3s ease-in-out 0s"}}
+        />
         <img
-          className="absolute top-[10%] w-[284px] h-[394px] left-[60%] md:left-[50%] transform translate-x-[-50%]"
+          className="absolute top-[10%] w-[284px] h-[394px] left-[60%] md:left-[50%]  will-change-transform"
           src={poster.image}
           alt="Background Image"
+          style={{          transform: size?"translate(-50%, 0%) scale(0.91)":"translate(-50%, 0%) scale(0.79)",
+          transition: "transform 0.3s ease-in-out 0s"}}
         />
         {isGloss && (
           <img
             src={GLOSS_MASK}
-            className="absolute top-[10%] max-w-[20%] left-[50%] transform translate-x-[-50%]"
+            className="absolute top-[10%] max-w-[15%] left-[50%] transform translate-x-[-50%]"
+            style={{          transform: size?"translate(-50%, 0%) scale(0.91)":"translate(-50%, 0%) scale(0.79)",
+          transition: "transform 0.3s ease-in-out 0s"}}
           />
         )}
         {/* Carousel Thumbnails */}
