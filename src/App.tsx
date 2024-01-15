@@ -44,6 +44,7 @@ const poster = {
 };
 function App() {
   const [currBackground, setCurrBackground] = useState(0);
+  const [size,setSize] = useState<boolean>(false);
   const [type, setType] = useState<"matt" | "gloss">("matt");
   const [isDescriptionExpanded, setIsDescriptionExpanded] = useState(false);
 
@@ -117,7 +118,7 @@ function App() {
           </button>
         </div>
         {/* Cart */}
-        <div className="hidden lg:block p-6 w-[360px] top-[2.5%] h-[95%] right-4 absolute bg-white rounded-xl">
+        <div className="hidden lg:block p-6 w-[360px] top-[2.5%] h-[95%] right-4 absolute bg-gray-100 rounded-xl">
           <h1 className="mb-1 font-semibold text-[24px]">{poster.title}</h1>
           <div className="flex">
             <p className="text-[14px]">
@@ -134,6 +135,16 @@ function App() {
               Read {isDescriptionExpanded ? "less" : "more"}
             </button>
           </div>
+
+              {/* Select Size */}
+          <section className="space-y-2">
+            <b>Pick a size</b>
+            <aside className="h-fit w-fit rounded-full bg-gray-200 flex items-center">
+              <button className={`px-2.5 py-1 border ${size?"bg-transparent  border-transparent":"bg-white "}  rounded-full text-gray-600 hover:text-blue-400`} onClick={()=>setSize(false)}>45 x 32cm</button>
+              <button className={`px-2.5 py-1 border ${size?"bg-white ":"bg-transparent  border-transparent"}  rounded-full text-gray-600 hover:text-blue-400`} onClick={()=>setSize(true)}>67.5 x 48cm</button>
+            </aside>
+
+          </section>
 
           <div className="mt-4 font-semibold">
             <p className="text-[16px]">Go matte or gloss</p>
@@ -202,7 +213,7 @@ function App() {
             Read {isDescriptionExpanded ? "less" : "more"}
           </button>
         </div>
-
+            {/* Matte or gloss option */}
         <div className="mt-4 font-semibold">
           <p className="text-[16px]">Go matte or gloss</p>
           <div className="flex gap-2 mt-2">
@@ -233,7 +244,7 @@ function App() {
             </button>
           </div>
         </div>
-
+              {/* Add frame */}
         <div className="mt-4 font-semibold">
           <p className="text-[16px]">Add frame</p>
           <div className="flex gap-2 mt-2">
